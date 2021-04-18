@@ -1,0 +1,312 @@
+@import "../node_modules/compass-mixins/lib/compass";
+@import "../node_modules/compass-mixins/lib/animate";
+$fa-font-path : "~@fortawesome/fontawesome-free/webfonts";
+@import "./node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "./node_modules/@fortawesome/fontawesome-free/scss/solid.scss";
+@import "./node_modules/@fortawesome/fontawesome-free/scss/brands.scss";
+$fa-hearts: \f004;
+$fa-spades: \f2e5;
+$fa-clubs: \f1f9;
+$fa-dimonds: \f3a5;
+$small: 600px;
+$medium: 900px;
+
+
+
+*{
+  @include box-sizing(border-box);
+}
+
+body{
+  background:#F5F5F5;
+  font-family:Josefin Sans;
+  font-weight:100;
+  letter-spacing: -1px;
+}
+
+.card{
+  width:80vw;
+  height:80vh;
+  max-width: 620px;
+  background:#CCC5B3;
+  margin:40px auto;
+  @include border-radius(12px);
+  @include box-shadow(1px 1px 6px rgba(0,0,0,0.25));
+  position:relative;
+  overflow:hidden;
+  color:white;
+  @include animation(fadeInCard .6s forwards);
+  &:before{
+    content:"";
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:-50px;
+    background:#0C0B13;
+    border-left:solid 250px #664C4F;
+    @include animation(fadeInDark .8s forwards);
+  }
+  
+  &:after{
+    content:"";
+    position:absolute;
+    top:-50px;
+    bottom:-50px;
+    left:50px;
+    right:50px;
+    background:rgba(225,98,63,.7);
+    @include opacity(0);
+    @include animation(fadeInRed .7s .5s forwards);
+  }
+  
+  .content{
+    z-index:10;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    @include opacity(0);
+    transform: translate(-50%, -50%);
+    @include animation(fadeInText 1.2s .1s forwards);
+    h1{
+      font-size:60px;
+      line-height:40px;
+      margin:0;
+    }
+    h2{
+      margin:0;
+      font-size: 23px;
+      line-height: 30px;
+      sup{
+        font-size:14px;
+      } 
+    }
+  }
+  .mark{
+    position:absolute;
+    font-size:60px;
+    font-weight:bold;
+    top:16px;
+    left:24px;
+    opacity:0;
+    @include animation(fadeInMark .8s .5s forwards);
+    &:after{
+      @include fa-icon;
+      font-family: "Font Awesome 5 Free";
+      display: block;
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      text-rendering: auto;
+      font-size:20px;
+      color:#E1623F;
+      margin-left: -5px;
+      margin-top:4px;
+    }
+    &.upside-down{
+      @include transform(rotate(180deg));
+      top:auto;
+      left:auto;
+      bottom:16px;
+      right:24px;
+      color:#E1623F;
+      &:after{
+        color:#CCC5B3;
+      }
+    }
+  }
+  .diamonds{
+    &:after{
+      content: fa-content($fa-dimonds);
+    }
+  }
+  .spades{
+    &:after{
+      content: fa-content($fa-spades);
+    }
+  }
+  .clubs{
+    &:after{
+      content: fa-content($fa-clubs);
+    }
+  }
+  .hearts{
+    &:after{
+      content: fa-content($fa-hearts);
+    }
+  }
+
+}
+
+.black{
+  color:white;
+  background:white;
+  &:before{
+    background:#ffffff;
+    border-left:solid 250px black;
+  
+  }
+  &:after{
+    background:#000000b3;
+  }
+  .mark{
+    color: black;
+    &:after{
+      color:black;
+    }
+    &.upside-down{
+      color:black;
+      &:after{
+        color:black;
+      }
+    }
+  }
+}
+
+.red{
+  color:white;
+  background:white;
+  &:before{
+    background:#ffffff;
+    border-left:solid 250px red;
+  
+  }
+  &:after{
+    background:#9a4646c9;
+  }
+  .mark{
+    color: red;
+    &:after{
+      color:red;
+    }
+    &.upside-down{
+      color:red;
+      &:after{
+        color:red;
+      }
+    }
+  }
+}
+
+.dark{
+  color:#0C0B13;
+}
+
+@include keyframes(fadeInCard){
+  from{
+    top:40px;
+    @include transform(scale(1.2) rotate(10deg));
+  }
+  to{
+    top:0px;
+    @include transform(scale(1) rotate(0deg));
+  }
+}
+
+@include keyframes(fadeInDark){
+  from{
+    @include opacity(0);
+    @include transform(rotate(72deg) translate(120px, 800px));
+  }
+  30%{
+    @include opacity(.1);
+  }
+  to{
+    @include opacity(1);
+    @include transform(rotate(72deg) translate(75px, 20px));
+  }
+}
+
+@include keyframes(fadeInRed){
+  from{
+    @include opacity(0);
+    @include transform(rotate(70deg) translate(7px, 800px));
+  }
+  30%{
+    @include opacity(.2);
+  }
+  to{
+    @include opacity(1);
+    @include transform(rotate(58deg) translate(0px, 0px));
+  }
+}
+
+@include keyframes(fadeInText){
+  from{
+    @include opacity(0);
+  }
+  
+  to{
+    top:50%;
+    @include opacity(1);
+  }
+}
+
+@include keyframes(fadeInMark){
+  from{
+    @include opacity(0);
+  }
+  
+  to{
+    @include opacity(1);
+  }
+}
+
+/* Reset */
+button {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  outline: 0;
+  -webkit-appearance: none;
+}
+
+/* Custom */
+button {
+  display: inline-block;
+  position: relative;
+  padding: 20px 38px;
+  top: 0;
+  font-size: 30px;
+  font-family: "Open Sans", Helvetica;
+  border-radius: 4px;
+  border-bottom: 1px solid rgba(227, 28, 28, 0.5);
+  background: #b03737;
+  color: #fff;
+  box-shadow: 0px 0px 0px rgba(165, 15, 28, 0.1);
+  
+  -webkit-transform: translateZ(0);
+     -moz-transform: translateZ(0);
+      -ms-transform: translateZ(0);
+          transform: translateZ(0);
+  
+  -webkit-transition: all 0.2s ease;
+     -moz-transition: all 0.2s ease;
+      -ms-transition: all 0.2s ease;
+          transition: all 0.2s ease;
+}
+
+button:hover {
+  top: -10px;
+  box-shadow: 0px 10px 10px rgba(165, 15, 15, 0.2);
+  
+  -webkit-transform: rotateX(20deg);
+     -moz-transform: rotateX(20deg);
+      -ms-transform: rotateX(20deg);
+          transform: rotateX(20deg);
+}
+
+button:active {
+  top: 0px;
+  box-shadow: 0px 0px 0px rgba(165, 15, 15, 0);
+  background: #b03737;
+}
+
+.grey {
+  background: #a9a8a8;
+  &:active {
+    background: #a9a8a8;
+  }
+}
