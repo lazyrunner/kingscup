@@ -1,27 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Kings Cup</title>
+  <meta charset="UTF-8">
+  <title>Kings Cup</title>
 </head>
+
 <body>
   <div id="parent">
     <div class="card red">
-        <div class="mark dimonds">J</div>
-        <div class="content ">
-          <h1>JACK</h1>
-          <h2><sup>OF</sup><span >HEARTS</span></h2>
-        </div>
-        <div class="mark upside-down dimonds">J</div>
+      <div class="mark dimonds">J</div>
+      <div class="content ">
+        <h1>JACK</h1>
+        <h2><sup>OF</sup><span>HEARTS</span></h2>
+      </div>
+      <div class="mark upside-down dimonds">J</div>
     </div>
   </div>
-    <div style="
+  <div style="
     display: flex;
     justify-content: center;
 ">
-        <button id="getNextCard">Next Card</button>
-        
+    <button id="getNextCard">Next Card</button>
+
+  </div>
+  <div class="modal" id="modal1" data-animation="slideInOutLeft">
+    <div class="modal-dialog">
+      <header class="modal-header">
+        Game Over
+      </header>
+      <section class="modal-content">
+          <h3> You have to now drink whatever is in the King's cup.</h3>
+          <p>Click outside this modal to close it and press 'New Game' to start another game.</p>
+      </section>
+      <footer class="modal-footer">
+        Created By Joshua Fernandes
+      </footer>
     </div>
-    
+  </div>
+
 </body>
+
 </html>

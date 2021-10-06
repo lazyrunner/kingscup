@@ -283,14 +283,16 @@ function addCard(suit, value, description){
   var element = document.createElement("div");
   var color = (suit == 'hearts' || suit == 'diamonds') ? 'red' : 'black';
   element.className = 'card '+color;
+  var kingcountstr = value == 'K' ? kingcount : '';
   element.innerHTML = `
-  <div class="mark `+suit+`">`+value+`</div>
+  <div class="mark `+suit+`">`+value+` `+kingcountstr+`</div>
   <div class="content ">
     <h1>`+description.name+`</h1>
     <h2><span >`+description.desc+`</span></h2>
   </div>
   <div class="mark upside-down `+suit+`">`+value+`</div>`;
   document.getElementById('parent').appendChild(element);
+  
 }
 
 function lastCard(suit, value){
@@ -299,14 +301,29 @@ function lastCard(suit, value){
     var color = (suit == 'hearts' || suit == 'diamonds') ? 'red' : 'black';
     element.className = 'card '+color;
     element.innerHTML = `
-    <div class="mark `+suit+`">`+value+`</div>
+    <div class="mark `+suit+`">`+value+` 4</div>
     <div class="content ">
       <h1>Last King</h1>
       <h2><span >You have to drink the kings cup</span></h2>
     </div>
     <div class="mark upside-down `+suit+`">`+value+`</div>`;
     document.getElementById('parent').appendChild(element);
+    document.getElementById('modal1').classList.add("is-visible");
   }
 
 nextCard();
 console.log(cards[0]);
+const isVisible = "is-visible";
+
+document.addEventListener("click", e => {
+  if (e.target == document.querySelector(".modal.is-visible")) {
+    document.querySelector(".modal.is-visible").classList.remove(isVisible);
+  }
+});
+
+document.addEventListener("keyup", e => {
+  // if we press the ESC
+  if (e.key == "Escape" && document.querySelector(".modal.is-visible")) {
+    document.querySelector(".modal.is-visible").classList.remove(isVisible);
+  }
+});
